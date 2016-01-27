@@ -2,6 +2,7 @@ from sys import *
 
 tokens = []
 num_stack = []
+symbols = {}
 
 def open_file(filename):
 	data = open(filename, "r").read()
@@ -35,7 +36,15 @@ def lex(filecontents):
 			elif var != "":
 			    tokens.append("VAR:" + var)
 			    var = ""
+			    varStart = 0
 			tok = ""
+		elif tok == "=" and state == 0:
+		    if var != "":
+		        tokens.append("VAR:" + var)
+		        var = ""
+		        varStart = 0
+		    tokens.append("EQUALS")
+		    tok = ""
 		elif tok == "$" and state == 0:
 		    varStart = 1
 		    var += tok
@@ -65,9 +74,11 @@ def lex(filecontents):
 			string += tok
 			tok = ""
 
-	print(tokens)
-	return ""
-	#return tokens
+	#print(tokens)
+	#symbols["variable"] = "Hello"
+	#print(symbols)
+	#return ""
+	return tokens
 	#print(tokens)	#print(tok)
 
 def evalExpr(expr):
@@ -82,6 +93,10 @@ def doPRINT(toPRINT):
 	elif(toPRINT[0:4] == "EXPR"):
 		toPRINT = evalExpr(toPRINT[5:])
 	print(toPRINT)
+	
+def doASSIGN(varname, varvalue):
+    symbols[varname[4:]] = varvalue
+
 def parse(toks):
 	i = 0
 	while(i < len(toks)):
@@ -93,6 +108,10 @@ def parse(toks):
 			elif toks[i+1][0:4] == "EXPR":
 				doPRINT(toks[i+1])#[5:])
 			i+=2
+		if toks[i][0:3] + " " + toks[i+1] + " " + toks[i+2][0:6] == "VAR EQUALS STRING":
+		    doASSIGN(toks[i], toks[i+2]) 
+		    i+=3
+	print(symbols)
 
 def run():
 	data = open_file(argv[1])
