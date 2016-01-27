@@ -1,7 +1,1 @@
-out "Hello world."
-out "Hello"
-out "I'm Andrew."
-out 4+5
-out 4-5
-out 4*5
-out 4/5
+out 10 + 2 * 4
