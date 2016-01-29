@@ -1,2 +1,2 @@
-$variable = "Hello"
-$var2 = "Hullo"
+in "Enter your name: " $name
+out $name
