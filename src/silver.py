@@ -102,7 +102,7 @@ def lex(filecontents):
 			string += tok
 			tok = ""
 
-	print(tokens)
+	#print(tokens)
 	#symbols["variable"] = "Hello"
 	#print(symbols)
 	#return ""
@@ -168,9 +168,9 @@ def parse(toks):
 			i+=3
 		elif toks[i] + " " + toks[i+1][0:3] + " " + toks[i+2] + " " + toks[i+3][0:3] + " " + toks[i+4] == "IF NUM EQEQ NUM THEN":
 			if toks[i+1][4:] == toks[i+3][4:]:
-				print("True")
+				return "True"
 			else:
-				print("False")
+				return "False"
 			i+=5
 	#print(symbols)
 
