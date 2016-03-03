@@ -12,4 +12,4 @@ programming logic but still get people typing...
 ######And your done!!
 
 #Documentation
-You can find the docs <a href="https://github.com/blubrackets/silver-lang/docs/DOC.md">here</a>.
+You can find the docs <a href="docs/DOC.md">here</a>.
